@@ -3,7 +3,7 @@
  * 统一处理服务器异常
  */
 function errorMiddleware(err,req, res, next) {
-    console.error("The sever is error!",err.message)
+    console.error("The server is error!",err.message)
 
     if (res.headerSent) {
         return next(err)
