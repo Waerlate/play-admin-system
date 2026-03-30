@@ -48,25 +48,15 @@ async function createUser(req, res, next) {
  * 删除用户
  */
 async function deleteUser(req, res, next) {
-  try {
-    const { id } = req.params
+    try {
+        const { id } = req.params
 
-    const user = await userService.findUserById(id)
+        await userService.deleteUser(id)
 
-    if (!user) {
-      return fail(res, '用户不存在', 404)
+        success(res, null, 'Delete successfully')
+    } catch (err) {
+        next(err)
     }
-
-    if (user.username === 'admin') {
-      return fail(res, '系统默认管理员不能删除', 403)
-    }
-
-    await userService.deleteUser(id)
-
-    success(res, null, 'Delete successfully')
-  } catch (err) {
-    next(err)
-  }
 }
 
 /**

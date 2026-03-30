@@ -7,24 +7,25 @@
  */
 
 
-const mysql = require(("mysql2"));
+const mysql = require('mysql2');
 
+const pool = mysql.createPool({
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
+  waitForConnections: true,
+  connectionLimit: 10,
+  queueLimit: 0
+});
 
-//创建数据库并连接实例
-const db = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "520457",
-    database: "learn_sql",
-})
+pool.getConnection((err, connection) => {
+  if (err) {
+    console.error('Connected to database failed:', err);
+    return;
+  }
+  console.log('Connected to database');
+  connection.release();
+});
 
-//初始化连接
-db.connect(err => {
-    if (err){
-        console.error('Error connecting to database', err)
-        return
-    }
-    console.log("Connected to database")
-})
-
-module.exports = db;
+module.exports = pool;

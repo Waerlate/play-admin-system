@@ -8,7 +8,7 @@
 const jwt = require('jsonwebtoken')
 
 //实际项目应放入环境变量
-const SECRET = 'prome_secret_key'
+const SECRET = process.env.JWT_SECRET
 
 /**
  * 生成JWT Token

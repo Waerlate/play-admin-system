@@ -1,6 +1,6 @@
 const bcrypt = require('bcrypt')
 const userService = require('../services/userService')
-const { success, fail } = require('../utils/response')
+const { success } = require('../utils/response')
 
 /**
  * 获取用户列表（分页）

@@ -19,6 +19,21 @@ function query(sql, params = []) {
     })
 }
 
+
+function findUserById(id) {
+  return new Promise((resolve, reject) => {
+    db.query(
+      'SELECT * FROM users WHERE id = ?',
+      [id],
+      (err, result) => {
+        if (err) reject(err)
+        else resolve(result[0] || null)
+      }
+    )
+  })
+}
+
+
 /**
  * 根据用户名查询用户
  */
@@ -126,6 +141,7 @@ function updateUser(id, username, role) {
 
 module.exports = {
     query,
+    findUserById,
     findUserByUsername,
     createUser,
     getUsers,

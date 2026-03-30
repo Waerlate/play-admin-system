@@ -21,7 +21,7 @@ const loginStatus = ref('')
 
 const handleLogin = async () => {
   try {
-    const res = await request.post('/api/login', form)
+    const res = await request.post('/login', form)
     console.log('login success response:', res.data)
 
     const token = res.data.data.token
