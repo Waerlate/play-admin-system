@@ -7,6 +7,9 @@ import App from './App.vue'
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
 
+// 导入全局样式
+import './assets/main.css'
+
 const app = createApp(App)
 const pinia = createPinia()
 app.use(pinia)
