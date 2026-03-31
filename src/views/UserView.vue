@@ -31,7 +31,7 @@ const form = reactive({
 //获取用户列表
 const fetchUsers = async () => {
   try {
-    const res = await request.get('/api/users',{
+    const res = await request.get('/users',{
       params: {
         page: page.value,
         pageSize: pageSize.value,
@@ -80,12 +80,12 @@ const openEditDialog = (row) => {
 const handleSave = async() => {
   try {
     if (isEdit.value) {
-      await request.put(`/api/users/${currentId.value}`, {
+      await request.put(`/users/${currentId.value}`, {
         username: form.username,
         role: form.role,
       })
     }else {
-      await request.post('/api/users', {
+      await request.post('/users', {
         username: form.username,
         role: form.role,
       })
@@ -101,7 +101,7 @@ const handleSave = async() => {
 //删除
 const handleDelete = async(id) => {
   try {
-    await request.delete(`/api/users/${id}`)
+    await request.delete(`/users/${id}`)
     fetchUsers()
   } catch (error) {
     console.error('删除失败', error);
